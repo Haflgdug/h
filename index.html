@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vxteey - Luxury Store</title>
+    <!-- خطوط عربية وإنجليزية فاخرة -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- شريط التصفح -->
+    <header>
+        <div class="logo"><i class="fas fa-crown"></i> vxteey</div>
+        <nav>
+            <button class="nav-btn" onclick="showPage('home')" data-i18n="home">الرئيسية</button>
+            <button class="nav-btn" onclick="showPage('shop')" data-i18n="shop">المتجر</button>
+            <button class="nav-btn cart-btn" onclick="showPage('cart')">
+                <i class="fas fa-shopping-bag"></i> <span data-i18n="cart">السلة</span> (<span id="cart-count">0</span>)
+            </button>
+            <!-- زر تغيير اللغة -->
+            <button class="lang-btn" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i> <span id="lang-text">EN</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- الصفحة الرئيسية -->
+    <main id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-i18n="heroTitle">اكتشف الفخامة في كل تفصيلة</h1>
+                <p data-i18n="heroDesc">تشكيلة حصرية من أرقى العطور، النظارات، والملابس المصممة خصيصاً لك.</p>
+                <button class="btn-primary" onclick="showPage('shop')" data-i18n="shopNow">تسوق الآن</button>
+            </div>
+        </section>
+
+        <!-- قسم التواصل الإعلاني الفاخر -->
+        <section class="contact-banner">
+            <h2 data-i18n="contactTitle"><i class="fas fa-gem"></i> ابقَ على تواصل معنا</h2>
+            <p data-i18n="contactDesc">تابع أحدث صيحات الموضة والعروض الحصرية مباشرة عبر حساباتنا</p>
+            <div class="contact-links">
+                <!-- زر إنستغرام الإعلاني -->
+                <a href="https://www.instagram.com/vxteey" target="_blank" class="contact-link instagram-link">
+                    <i class="fab fa-instagram"></i> <span data-i18n="followIg">تابعنا على إنستغرام</span>
+                </a>
+                
+                <!-- أرقام الهواتف -->
+                <div class="phone-container">
+                    <a href="tel:0771208098" class="contact-link phone-link">
+                        <i class="fas fa-phone-alt"></i> 0771208098
+                    </a>
+                    <a href="tel:0691084765" class="contact-link phone-link">
+                        <i class="fas fa-phone-alt"></i> 0691084765
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- صفحة المتجر -->
+    <main id="shop" class="page">
+        <section class="shop-section">
+            <h2 class="section-title" data-i18n="shopTitle">منتجاتنا المميزة</h2>
+            <div class="filters">
+                <button class="filter-btn active-filter" onclick="filterProducts('all', this)" data-i18n="filterAll">الكل</button>
+                <button class="filter-btn" onclick="filterProducts('perfume', this)" data-i18n="filterPerfume">عطور</button>
+                <button class="filter-btn" onclick="filterProducts('glasses', this)" data-i18n="filterGlasses">نظارات</button>
+                <button class="filter-btn" onclick="filterProducts('clothes', this)" data-i18n="filterClothes">ملابس</button>
+            </div>
+            <!-- شبكة المنتجات -->
+            <div class="product-grid" id="product-list"></div>
+        </section>
+    </main>
+
+    <!-- صفحة السلة -->
+    <main id="cart" class="page">
+        <section class="cart-section">
+            <h2 class="section-title" data-i18n="cartTitle">سلة المشتريات</h2>
+            <div id="cart-items" class="cart-items-container"></div>
+            
+            <div class="cart-summary">
+                <h3><span data-i18n="total">الإجمالي:</span> <span id="total-price" style="color:var(--gold-color);">0</span> $</h3>
+                
+                <div class="payment-methods">
+                    <h4 data-i18n="payMethod">اختر طريقة الدفع:</h4>
+                    <div class="payment-options">
+                        <label class="payment-card">
+                            <input type="radio" name="payment" value="visa" checked>
+                            <div class="payment-content"><i class="fab fa-cc-visa"></i><span data-i18n="visa">فيزا</span></div>
+                        </label>
+                        <label class="payment-card">
+                            <input type="radio" name="payment" value="mastercard">
+                            <div class="payment-content"><i class="fab fa-cc-mastercard"></i><span data-i18n="mastercard">ماستركارد</span></div>
+                        </label>
+                        <!-- خيار PayPal بعد إصلاحه -->
+                        <label class="payment-card">
+                            <input type="radio" name="payment" value="paypal">
+                            <div class="payment-content"><i class="fab fa-paypal"></i><span data-i18n="paypal">باي بال</span></div>
+                        </label>
+                        <label class="payment-card">
+                            <input type="radio" name="payment" value="cod">
+                            <div class="payment-content"><i class="fas fa-hand-holding-dollar"></i><span data-i18n="cod">عند الاستلام</span></div>
+                        </label>
+                    </div>
+                </div>
+                <button class="btn-primary checkout-btn" onclick="processCheckout()" data-i18n="checkout">إتمام الطلب <i class="fas fa-check"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast-container"></div>
+    <footer>
+        <p>&copy; 2026 vxteey Store. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- نموذج معلومات العميل -->
+<div class="customer-info">
+    <h4 data-i18n="shippingInfo">معلومات الشحن:</h4>
+    <input type="text" id="cust-name" placeholder="الاسم الكامل" required>
+    <input type="tel" id="cust-phone" placeholder="رقم الهاتف" required>
+    <input type="text" id="cust-address" placeholder="عنوان التوصيل بالتفصيل" required>
+</div>

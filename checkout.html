@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | Luxury Perfumes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark-brown: #2d1810;
+            --medium-brown: #4a2e24;
+            --light-brown: #8d6e63;
+            --accent-brown: #795548;
+            --beige: #f5f2f0;
+            --gold: #d4af37;
+            --text-dark: #212121;
+            --text-light: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--beige);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+
+        .section-title {
+            text-align: center; font-size: 2.8rem; color: var(--dark-brown);
+            margin-bottom: 3.5rem; position: relative;
+        }
+
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 3px;
+            background-color: var(--gold); margin: 15px auto 0;
+        }
+
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; background-color: var(--dark-brown);
+            color: var(--text-light); position: fixed; width: 100%;
+            top: 0; z-index: 1000; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo { font-size: 2rem; letter-spacing: 3px; color: var(--gold); }
+
+        .nav-links { list-style: none; display: flex; gap: 2.5rem; }
+        .nav-links a {
+            color: var(--text-light); text-decoration: none; font-size: 1.1rem;
+            transition: color 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(45, 24, 16, 0.75), rgba(45, 24, 16, 0.6)), url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--text-light); padding-top: 80px;
+        }
+
+        .hero-content h1 { font-size: 4.5rem; margin-bottom: 1.5rem; font-style: italic; color: var(--gold); }
+        .hero-content p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 650px; margin: 0 auto 2.5rem; }
+
+        .btn {
+            display: inline-block; padding: 1rem 3rem; background-color: var(--gold);
+            color: var(--dark-brown); text-decoration: none; font-size: 1.1rem;
+            font-weight: bold; border-radius: 4px; text-transform: uppercase;
+            letter-spacing: 1.5px; transition: all 0.3s ease;
+        }
+        .btn:hover { background-color: #b5952f; transform: translateY(-4px); box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); }
+
+        .btn-small {
+            display: inline-block; padding: 0.8rem 1.8rem; background-color: var(--medium-brown);
+            color: var(--text-light); text-decoration: none; cursor: pointer;
+            font-family: inherit; font-size: 1rem; border-radius: 3px;
+            transition: all 0.3s ease; text-align: center; border: none;
+        }
+        .btn-small:hover { background-color: var(--dark-brown); transform: translateY(-2px); color: var(--gold); }
+
+        .collection { padding: 6rem 5%; background-color: #faf9f8; flex: 1; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+
+        .product-card {
+            background-color: #fff; padding: 2.5rem; text-align: center;
+            border-radius: 8px; border: 1px solid #eaeaea;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .product-card:hover { transform: translateY(-12px); box-shadow: 0 15px 30px rgba(74, 46, 36, 0.15); }
+
+        .product-img-placeholder { width: 100%; height: 280px; background-color: var(--light-brown); margin-bottom: 2rem; border-radius: 4px; }
+        .product-card h3 { color: var(--dark-brown); margin-bottom: 0.8rem; font-size: 1.6rem; }
+        .product-card p { color: #666; margin-bottom: 1.5rem; font-size: 1rem; }
+        .price { display: block; font-size: 1.4rem; font-weight: bold; color: var(--accent-brown); margin-bottom: 1.5rem; }
+
+        .about { padding: 6rem 5%; background-color: var(--medium-brown); color: var(--text-light); text-align: center; }
+        .about-content { max-width: 800px; margin: 0 auto; }
+        .about-content h2 { font-size: 3rem; margin-bottom: 2rem; color: var(--gold); }
+        .about-content p { font-size: 1.2rem; line-height: 1.8; }
+
+        .footer { background-color: var(--dark-brown); color: var(--text-light); text-align: center; padding: 4rem 5%; border-top: 3px solid var(--gold); margin-top: auto; }
+        .footer h3 { letter-spacing: 3px; margin-bottom: 1.5rem; font-size: 1.8rem; color: var(--gold); }
+        .footer p { margin-bottom: 0.5rem; opacity: 0.8; }
+
+        .js-enabled .fade-in { opacity: 0; transform: scale(0.95); transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .js-enabled .slide-up { opacity: 0; transform: translateY(50px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .js-enabled .show { opacity: 1; transform: translateY(0) scale(1); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">AURA</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>Discover Your Signature Scent</h1>
+            <p>Experience the finest blend of nature and luxury in every drop.</p>
+            <a href="#collection" class="btn">Shop the Collection</a>
+        </div>
+    </header>
+
+    <section id="collection" class="collection">
+        <h2 class="section-title slide-up">Our Exclusive Collection</h2>
+        <div class="product-grid">
+            <div class="product-card slide-up">
+                <div class="product-img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=400&q=80'); background-size: cover;"></div>
+                <h3>Midnight Amber</h3>
+                <p>Rich, warm, and mysterious.</p>
+                <span class="price">$120</span>
+                <a href="checkout.html?product=Midnight+Amber&price=120" class="btn-small">Buy Now</a>
+            </div>
+            <div class="product-card slide-up" style="transition-delay: 0.1s;">
+                <div class="product-img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=400&q=80'); background-size: cover;"></div>
+                <h3>Velvet Woods</h3>
+                <p>Earthy cedar intertwined with vanilla.</p>
+                <span class="price">$145</span>
+                <a href="checkout.html?product=Velvet+Woods&price=145" class="btn-small">Buy Now</a>
+            </div>
+            <div class="product-card slide-up" style="transition-delay: 0.2s;">
+                <div class="product-img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1615486171448-47c34689cf6c?auto=format&fit=crop&w=400&q=80'); background-size: cover;"></div>
+                <h3>Golden Oasis</h3>
+                <p>A bright burst of citrus and musk.</p>
+                <span class="price">$110</span>
+                <a href="checkout.html?product=Golden+Oasis&price=110" class="btn-small">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-content slide-up">
+            <h2>Crafted with Passion</h2>
+            <p>At Aura, we believe that a fragrance is more than just a scent; it's an extension of your personality. Our master perfumers source only the rarest ingredients from around the world to bring you an unparalleled olfactory experience, housed in elegantly designed bottles.</p>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="footer-content slide-up">
+            <h3>AURA</h3>
+            <p>Email: contact@auraperfumes.com | Phone: +1 234 567 890</p>
+            <p>&copy; 2026 Aura Luxury Perfumes. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.classList.add('js-enabled');
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-up');
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const animationObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            animatedElements.forEach(el => { animationObserver.observe(el); });
+        });
+    </script>
+</body>
+</html>
